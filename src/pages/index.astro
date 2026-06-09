@@ -8,7 +8,11 @@ import Base from '../layouts/Base.astro';
   <section class="hero">
     <div class="container">
       <p class="eyebrow">⭐ Hey Bodhi! ⭐</p>
-      <div class="hero-robot">🤖</div>
+      <div class="hero-artwork-wrap">
+        <div class="hero-artwork">
+          <img src="/images/starscream-g1.jpg" alt="Starscream G1 artwork" />
+        </div>
+      </div>
       <h1 class="hero-title">STARSCREAM!</h1>
       <p class="hero-sub">The coolest <span>Decepticon jet fighter</span> in the universe!</p>
       <div class="hero-badges">
@@ -25,17 +29,26 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <h2 class="section-heading">Who is Starscream?</h2>
       <p class="section-sub">Get ready — this robot is SO cool!</p>
-      <div class="who-card">
-        <div class="who-icon">🦅</div>
-        <p>
-          Starscream is a <span class="highlight-purple">Decepticon</span> — a robot on the
-          <span class="highlight-purple">sneaky side</span>! He is
-          <span class="highlight-purple">silver and purple</span> and VERY fast.
-          He wants to be the most <span class="highlight-purple">powerful robot ever</span>
-          and thinks he is <span class="highlight-red">the best at EVERYTHING!</span>
-          He is always yelling — that's why his name is
-          <span class="highlight-purple">STARSCREAM!</span> 🌟
-        </p>
+      <div class="who-layout">
+        <div class="who-img-frame">
+          <img src="/images/starscream-toon.jpg" alt="Starscream in the G1 cartoon" />
+          <span class="img-caption">From the original cartoon! 📺</span>
+        </div>
+        <div class="who-text">
+          <p>
+            Starscream is a <span class="highlight-purple">Decepticon</span> — a robot on the
+            <span class="highlight-purple">sneaky side</span>! He is
+            <span class="highlight-purple">silver and red</span> and VERY fast.
+            He wants to be the most <span class="highlight-purple">powerful robot ever</span>
+            and thinks he is <span class="highlight-red">the best at EVERYTHING!</span>
+            He is always yelling — that's why his name is
+            <span class="highlight-purple">STARSCREAM!</span> 🌟
+          </p>
+          <p class="who-extra">
+            He first appeared on TV in <span class="highlight-gold">1984</span> —
+            before your dad was even born!
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -56,10 +69,12 @@ import Base from '../layouts/Base.astro';
           <h3>Transform!</h3>
           <p>He changes shape SUPER fast!</p>
         </div>
-        <div class="step-card">
-          <div class="step-icon">✈️</div>
-          <h3>Jet!</h3>
-          <p>ZOOM through the sky!</p>
+        <div class="step-card step-jet">
+          <div class="jet-img-wrap">
+            <img src="/images/starscream-jet.jpg" alt="Starscream in jet mode" />
+          </div>
+          <h3>JET! 🚀</h3>
+          <p>ZOOM through the sky at top speed!</p>
         </div>
       </div>
     </div>
@@ -115,7 +130,7 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="fact-item">
           <span class="fact-num">2</span>
-          <p>His colors are <span class="highlight-cyan">silver, purple, and red</span> — the most awesome robot colors!</p>
+          <p>His colors are <span class="highlight-cyan">silver, red, and blue</span> — the most awesome robot colors!</p>
         </div>
         <div class="fact-item">
           <span class="fact-num">3</span>
@@ -128,6 +143,28 @@ import Base from '../layouts/Base.astro';
         <div class="fact-item">
           <span class="fact-num">5</span>
           <p>Even though he's a bad guy, <span class="highlight-cyan">tons of kids love him</span> — because he's so exciting to watch!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTWORK GALLERY -->
+  <section class="content-section gallery-section">
+    <div class="container">
+      <h2 class="section-heading">Starscream in Action!</h2>
+      <p class="section-sub">Check out these awesome pictures!</p>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="/images/starscream-g1.jpg" alt="Starscream G1 official art" />
+          <span class="gallery-label">Official G1 Art 🎨</span>
+        </div>
+        <div class="gallery-card">
+          <img src="/images/starscream-jet.jpg" alt="Starscream flying as a jet" />
+          <span class="gallery-label">Flying at full speed! ✈️</span>
+        </div>
+        <div class="gallery-card">
+          <img src="/images/starscream-toon.jpg" alt="Starscream from the cartoon" />
+          <span class="gallery-label">From the TV show! 📺</span>
         </div>
       </div>
     </div>
@@ -174,18 +211,32 @@ import Base from '../layouts/Base.astro';
     color: #fbbf24;
     letter-spacing: 0.1em;
     text-shadow: 0 0 20px rgba(251,191,36,0.5);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
   }
-  .hero-robot {
-    font-size: clamp(5rem, 18vw, 9rem);
-    line-height: 1;
-    filter: drop-shadow(0 0 30px rgba(168,85,247,0.8));
+  .hero-artwork-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
     animation: float 3s ease-in-out infinite;
-    margin: 0.75rem 0;
+  }
+  .hero-artwork {
+    border: 3px solid rgba(168,85,247,0.6);
+    border-radius: 16px;
+    box-shadow:
+      0 0 40px rgba(168,85,247,0.5),
+      0 0 80px rgba(239,68,68,0.2),
+      0 20px 60px rgba(0,0,0,0.6);
+    overflow: hidden;
+    max-width: min(260px, 55vw);
+    background: #fff;
+  }
+  .hero-artwork img {
+    width: 100%;
+    display: block;
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(-18px) rotate(2deg); }
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-14px) rotate(1deg); }
   }
   .hero-title {
     font-family: 'Bangers', cursive;
@@ -254,20 +305,49 @@ import Base from '../layouts/Base.astro';
   /* WHO */
   .who-section { background: radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 70%); }
   .who-section .section-heading { color: #a855f7; }
-  .who-card {
-    background: rgba(255,255,255,0.04);
-    border: 2px solid rgba(168,85,247,0.3);
-    border-radius: 24px;
-    padding: 2rem;
-    text-align: center;
-    max-width: 640px;
+  .who-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 760px;
     margin: 0 auto;
   }
-  .who-icon { font-size: 4rem; margin-bottom: 1rem; }
-  .who-card p {
-    font-size: clamp(1rem, 3vw, 1.25rem);
+  .who-img-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .who-img-frame img {
+    width: 200px;
+    border-radius: 16px;
+    border: 3px solid rgba(168,85,247,0.5);
+    box-shadow: 0 0 24px rgba(168,85,247,0.3), 0 8px 24px rgba(0,0,0,0.5);
+    display: block;
+  }
+  .img-caption {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+  }
+  .who-text {
+    background: rgba(255,255,255,0.04);
+    border: 2px solid rgba(168,85,247,0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+  .who-text p {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
     font-weight: 800;
     line-height: 1.7;
+  }
+  .who-extra {
+    margin-top: 1rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem !important;
   }
 
   /* TRANSFORM */
@@ -277,7 +357,7 @@ import Base from '../layouts/Base.astro';
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto;
   }
   .step-card {
@@ -290,6 +370,29 @@ import Base from '../layouts/Base.astro';
   }
   .step-card:hover { border-color: rgba(239,68,68,0.5); }
   .step-middle { border-color: rgba(239,68,68,0.5); }
+  .step-jet {
+    border-color: rgba(239,68,68,0.4);
+    padding: 0;
+    overflow: hidden;
+  }
+  .step-jet:hover { border-color: rgba(239,68,68,0.7); }
+  .jet-img-wrap {
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  .jet-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .step-jet h3, .step-jet p {
+    padding: 0 1rem;
+  }
+  .step-jet h3 { padding-top: 0.75rem; }
+  .step-jet p { padding-bottom: 1rem; }
   .step-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
   .step-card h3 {
     font-family: 'Bangers', cursive;
@@ -363,6 +466,44 @@ import Base from '../layouts/Base.astro';
   }
   .fact-item p { font-size: 1rem; font-weight: 800; line-height: 1.5; }
 
+  /* GALLERY */
+  .gallery-section { background: radial-gradient(ellipse at center, rgba(168,85,247,0.06) 0%, transparent 70%); }
+  .gallery-section .section-heading { color: #a855f7; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 840px;
+    margin: 0 auto;
+  }
+  .gallery-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid rgba(168,85,247,0.3);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    background: rgba(255,255,255,0.03);
+  }
+  .gallery-card:hover {
+    border-color: rgba(168,85,247,0.7);
+    transform: scale(1.03) translateY(-4px);
+    box-shadow: 0 0 24px rgba(168,85,247,0.4), 0 12px 32px rgba(0,0,0,0.4);
+  }
+  .gallery-card img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-label {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+  }
+
   /* MISSION */
   .mission-section {
     text-align: center;
@@ -407,8 +548,14 @@ import Base from '../layouts/Base.astro';
   .highlight-cyan { color: #67e8f9; }
   .highlight-gold { color: #fbbf24; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .steps-grid { grid-template-columns: 1fr; }
     .powers-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .who-layout {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .who-img-frame img { width: 160px; }
   }
 </style>
