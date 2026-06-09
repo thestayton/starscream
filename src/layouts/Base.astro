@@ -1,0 +1,108 @@
+---
+import { theme } from '../../theme.config.js';
+import { site } from '../../site.config.js';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} — ${site.name}` : site.name;
+const pageDesc = description || site.description;
+
+const cssVars = `
+  --color-bg: ${theme.colorBg};
+  --color-bg-alt: ${theme.colorBgAlt};
+  --color-surface: ${theme.colorSurface};
+  --color-border: ${theme.colorBorder};
+  --color-text: ${theme.colorText};
+  --color-text-muted: ${theme.colorTextMuted};
+  --color-accent: ${theme.colorAccent};
+  --color-accent-fg: ${theme.colorAccentFg};
+  --color-accent-hover: ${theme.colorAccentHover};
+  --font-body: ${theme.fontBody};
+  --font-heading: ${theme.fontHeading};
+  --font-mono: ${theme.fontMono};
+  --font-size-base: ${theme.fontSizeBase};
+  --line-height: ${theme.lineHeight};
+  --max-width: ${theme.maxWidth};
+  --content-width: ${theme.contentWidth};
+  --radius-card: ${theme.radiusCard};
+  --radius-btn: ${theme.radiusBtn};
+  --spacing-section: ${theme.spacingSection};
+`.trim();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    <style set:html={`:root { ${cssVars} }`} />
+    {theme.googleFonts && <link rel="preconnect" href="https://fonts.googleapis.com" />}
+    {theme.googleFonts && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
+    {theme.googleFonts && <link href={theme.googleFonts} rel="stylesheet" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height);
+        overflow-x: hidden;
+      }
+      /* Stars background */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(1px 1px at 8% 18%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 28% 52%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 48% 12%, white 0%, transparent 100%),
+          radial-gradient(2px 2px at 68% 32%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 88% 64%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 22% 78%, white 0%, transparent 100%),
+          radial-gradient(2px 2px at 58% 72%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 76% 88%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 42% 44%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 14% 62%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 34% 24%, white 0%, transparent 100%),
+          radial-gradient(1px 1px at 92% 38%, white 0%, transparent 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      main { position: relative; z-index: 1; }
+      footer {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem;
+        color: rgba(255,255,255,0.3);
+        font-weight: 700;
+        font-size: 0.9rem;
+        border-top: 1px solid var(--color-border);
+      }
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>{site.footer}</p>
+    </footer>
+  </body>
+</html>
